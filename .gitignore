@@ -25,3 +25,9 @@ replay_pid*
 
 target/
 .vscode/
+.replit
+replit.nix
+.breakpoints
+.classpath
+.project
+.settings/
