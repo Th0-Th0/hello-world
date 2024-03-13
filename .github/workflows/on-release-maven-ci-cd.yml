@@ -1,6 +1,8 @@
 name: Compile, run unit tests and publish package to Github Packages
 
-on: [push, pull_request]
+on:
+  release:
+    types: created
 
 jobs:
   compile-test-publish:
@@ -17,6 +19,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Update version in pom.xml
+      run: mvn  --batch-mode versions:set -DnewVersion=${{ github.event.release.tag_name }} -DgenerateBackupPoms=false
     - name: Compile, test and publish package using Maven
       run: mvn --batch-mode --update-snapshots deploy
       env:

@@ -1,0 +1,26 @@
+name: Compile, run unit tests and publish package to Github Packages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  compile-test-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+    - name: Checkout git repository
+      uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Compile, test and publish package using Maven
+      run: mvn --batch-mode --update-snapshots deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
