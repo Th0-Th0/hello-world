@@ -18,8 +18,18 @@
     
     <!-- Unit tests -->
     <junit.jupiter.version>5.9.0</junit.jupiter.version>
+
+    <github.packages.repo.url>https://maven.pkg.github.com/th0-th0/hello-world</github.packages.repo.url>
   </properties>
   
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>${github.packages.repo.url}</url>
+    </repository>
+  </distributionManagement>
+
   <dependencies>
     <!-- Unit tests framework -->
     <dependency>
