@@ -9,4 +9,4 @@ jobs:
   compile-test-publish:
     uses: ./.github/workflows/maven-workflow.yml
     with:
-      maven-attributes: deploy
+      maven-command-attributes: deploy

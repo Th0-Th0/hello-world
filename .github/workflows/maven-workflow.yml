@@ -3,7 +3,7 @@ name: Maven
 on:
     workflow_call:
       inputs:
-        mvn-attributes:
+        maven-command-attributes:
           required: true
           type: string
       secrets:
@@ -25,7 +25,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Run the maven command (${{ inputs.mvn-attributes }})
-      run: mvn --batch-mode --update-snapshots ${{ inputs.mvn-attributes }}
+    - name: Run the maven command (${{ inputs.maven-command-attributes }})
+      run: mvn --batch-mode --update-snapshots ${{ inputs.maven-command-attributes }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
