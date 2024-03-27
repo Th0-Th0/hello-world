@@ -10,3 +10,5 @@ jobs:
     uses: ./.github/workflows/maven-workflow.yml
     with:
       maven-command-attributes: deploy
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
