@@ -1,0 +1,31 @@
+name: Maven
+
+on:
+    workflow_call:
+      inputs:
+        mvn-attributes:
+          required: true
+          type: string
+      secrets:
+        token:
+          required: true
+
+jobs:
+  run-maven:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+    - name: Checkout git repository
+      uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Run the maven command (${{ inputs.mvn-attributes }})
+      run: mvn --batch-mode --update-snapshots ${{ inputs.mvn-attributes }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
