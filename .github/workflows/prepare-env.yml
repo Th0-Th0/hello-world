@@ -1,0 +1,20 @@
+name: Prepare env (checkout git repo and set up JDK)
+
+on:
+    workflow_call:
+      secrets:
+        token:
+          required: true
+
+jobs:
+  prepare-env:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout git repository
+      uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven

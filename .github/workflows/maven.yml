@@ -1,14 +1,14 @@
 name: Maven
 
 on:
-    workflow_call:
-      inputs:
-        maven-command-attributes:
-          required: true
-          type: string
-      secrets:
-        token:
-          required: true
+  workflow_call:
+    inputs:
+      maven-command-attributes:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
 
 jobs:
   run-maven:

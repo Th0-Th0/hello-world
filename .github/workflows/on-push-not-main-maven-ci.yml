@@ -7,7 +7,7 @@ on:
 
 jobs:
   compile-test:
-    uses: ./.github/workflows/maven-workflow.yml
+    uses: ./.github/workflows/maven.yml
     with:
       maven-command-attributes: verify
     permissions:

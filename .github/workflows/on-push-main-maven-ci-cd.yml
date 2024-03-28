@@ -7,11 +7,24 @@ on:
 
 jobs:
   compile-test-publish:
-    uses: ./.github/workflows/maven-workflow.yml
-    with:
-      maven-command-attributes: deploy
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - name: Prepare environment
+      uses: ./.github/workflows/prepare-env.yml
+    - name: Run maven deploy
+      uses: ./.github/workflows/maven.yml
+      with:
+        maven-command-attributes: deploy
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+#    uses: ./.github/workflows/maven.yml
+#    with:
+#      maven-command-attributes: deploy
+#    permissions:
+#      contents: read
+#      packages: write
+#    secrets:
+#      token: ${{ secrets.GITHUB_TOKEN }}

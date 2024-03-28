@@ -1,0 +1,20 @@
+name: Execute a maven command
+
+on:
+  workflow_call:
+    inputs:
+      maven-command-attributes:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
+
+jobs:
+  execute-maven-command:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run the maven command (${{ inputs.maven-command-attributes }})
+      run: mvn --batch-mode --update-snapshots ${{ inputs.maven-command-attributes }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
