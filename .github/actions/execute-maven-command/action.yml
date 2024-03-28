@@ -11,7 +11,7 @@ inputs:
 runs:
   using: composite
   steps:
-  - name: Run the maven command (attributes: ${{ inputs.maven-command-attributes }})
+  - name: 'Run the maven command (attributes: ${{ inputs.maven-command-attributes }})'
     run: mvn --batch-mode --update-snapshots ${{ inputs.maven-command-attributes }}
     env:
       GITHUB_TOKEN: ${{ inputs.token }}
