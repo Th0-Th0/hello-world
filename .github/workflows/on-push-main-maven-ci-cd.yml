@@ -13,9 +13,9 @@ jobs:
       packages: write
     steps:
     - name: Prepare environment
-      uses: actions/prepare-env
+      uses: ./.github/actions/prepare-env
     - name: Run maven deploy
-      uses: actions/execute-maven-command
+      uses: ./.github/actions/execute-maven-command
       with:
         maven-command-attributes: deploy
         token: ${{ secrets.GITHUB_TOKEN }}
