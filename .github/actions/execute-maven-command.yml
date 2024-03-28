@@ -1,0 +1,17 @@
+name: Set pom version from input and deploy using maven
+
+inputs:
+  maven-command-attributes:
+    type: string
+    required: true
+  token:
+    description: The Github personnel access token
+    required: true
+
+runs:
+  using: composite
+  steps:
+  - name: Run the maven command (attributes: ${{ inputs.maven-command-attributes }})
+    run: mvn --batch-mode --update-snapshots ${{ inputs.maven-command-attributes }}
+    env:
+      GITHUB_TOKEN: ${{ inputs.token }}
